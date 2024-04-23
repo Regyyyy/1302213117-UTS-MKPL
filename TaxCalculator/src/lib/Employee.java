@@ -18,7 +18,6 @@ public class Employee {
 	
 	private boolean isForeigner;
 	
-	// Class salary
 	private Salary employeeSalary;
 	
 	private Person spouse;
