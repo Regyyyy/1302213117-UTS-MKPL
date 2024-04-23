@@ -2,7 +2,6 @@ package lib;
 
 import java.util.Date;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,6 +20,11 @@ public class Employee {
 	private int grade2Salary = 5000000;
 	private int grade3Salary = 7000000;
 	private double foreignerSalaryRaise = 1.5;
+
+	private int freeTaxSalary = 54000000;
+	private int marriedSalaryRaise = 4500000;
+	private int kidsSalaryRaise = 1500000;
+	private double taxPercentage = 0.05;
 	
 	public Employee(String employeeId, Person employeeInfo, Date dateJoined, boolean isForeigner) {
 		this.employeeId = employeeId;
@@ -67,10 +71,6 @@ public class Employee {
 
 		int tax = 0;
 		int numberOfChildren = children.size();
-		int freeTaxSalary = 54000000;
-		int marriedSalaryRaise = 4500000;
-		int kidsSalaryRaise = 1500000;
-		double taxPercentage = 0.05;
 		
 		if (date.getYear() == dateJoined.getYear()) {
 			monthWorkingInYear = date.getMonthValue() - dateJoined.getMonth() + 1;
