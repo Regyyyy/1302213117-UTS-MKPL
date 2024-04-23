@@ -9,20 +9,18 @@ import java.util.List;
 public class Employee {
 
 	private String employeeId;
-	
 	private Person employeeInfo;
-	
 	private Date dateJoined;
-
 	private int monthWorkingInYear;
-	
 	private boolean isForeigner;
-	
 	private Salary employeeSalary;
-	
 	private Person spouse;
-
 	private List<Person> children;
+
+	private int grade1Salary = 3000000;
+	private int grade2Salary = 5000000;
+	private int grade3Salary = 7000000;
+	private double foreignerSalaryRaise = 1.5;
 	
 	public Employee(String employeeId, Person employeeInfo, Date dateJoined, boolean isForeigner) {
 		this.employeeId = employeeId;
@@ -33,26 +31,21 @@ public class Employee {
 		children = new LinkedList<Person>();
 	}
 	
-	/**
-	 * Fungsi untuk menentukan gaji bulanan pegawai berdasarkan grade kepegawaiannya (grade 1: 3.000.000 per bulan, grade 2: 5.000.000 per bulan, grade 3: 7.000.000 per bulan)
-	 * Jika pegawai adalah warga negara asing gaji bulanan diperbesar sebanyak 50%
-	 */
-	
 	public void setMonthlySalary(int grade) {	
 		if (grade == 1) {
-			employeeSalary.setMonthlySalary(3000000);
+			employeeSalary.setMonthlySalary(grade1Salary);
 			if (isForeigner) {
-				employeeSalary.setMonthlySalary((int) (3000000 * 1.5));
+				employeeSalary.setMonthlySalary((int) (grade1Salary * foreignerSalaryRaise));
 			}
 		}else if (grade == 2) {
-			employeeSalary.setMonthlySalary(5000000);
+			employeeSalary.setMonthlySalary(grade2Salary);
 			if (isForeigner) {
-				employeeSalary.setMonthlySalary((int) (3000000 * 1.5));
+				employeeSalary.setMonthlySalary((int) (grade2Salary * foreignerSalaryRaise));
 			}
 		}else if (grade == 3) {
-			employeeSalary.setMonthlySalary(7000000);
+			employeeSalary.setMonthlySalary(grade3Salary);
 			if (isForeigner) {
-				employeeSalary.setMonthlySalary((int) (3000000 * 1.5));
+				employeeSalary.setMonthlySalary((int) (grade3Salary * foreignerSalaryRaise));
 			}
 		}
 	}
