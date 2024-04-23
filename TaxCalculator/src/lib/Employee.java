@@ -1,5 +1,6 @@
 package lib;
 
+import java.util.Date;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.LinkedList;
@@ -8,43 +9,28 @@ import java.util.List;
 public class Employee {
 
 	private String employeeId;
-	private String firstName;
-	private String lastName;
-	private String idNumber;
-	private String address;
 	
-	private int yearJoined;
-	private int monthJoined;
-	private int dayJoined;
+	private Person employeeInfo;
+	
+	private Date dateJoined;
+
 	private int monthWorkingInYear;
 	
 	private boolean isForeigner;
-	private boolean gender; //true = Laki-laki, false = Perempuan
 	
-	private int monthlySalary;
-	private int otherMonthlyIncome;
-	private int annualDeductible;
+	private Salary employeeSalary;
 	
-	private String spouseName;
-	private String spouseIdNumber;
+	private Person spouse;
 
-	private List<String> childNames;
-	private List<String> childIdNumbers;
+	private List<Person> children;
 	
-	public Employee(String employeeId, String firstName, String lastName, String idNumber, String address, int yearJoined, int monthJoined, int dayJoined, boolean isForeigner, boolean gender) {
+	public Employee(String employeeId, Person employeeInfo, Date dateJoined, boolean isForeigner) {
 		this.employeeId = employeeId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.idNumber = idNumber;
-		this.address = address;
-		this.yearJoined = yearJoined;
-		this.monthJoined = monthJoined;
-		this.dayJoined = dayJoined;
+		this.employeeInfo = employeeInfo;
+		this.dateJoined = dateJoined;
 		this.isForeigner = isForeigner;
-		this.gender = gender;
 		
-		childNames = new LinkedList<String>();
-		childIdNumbers = new LinkedList<String>();
+		children = new LinkedList<Person>();
 	}
 	
 	/**
@@ -54,39 +40,37 @@ public class Employee {
 	
 	public void setMonthlySalary(int grade) {	
 		if (grade == 1) {
-			monthlySalary = 3000000;
+			employeeSalary.setMonthlySalary(3000000);
 			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
+				employeeSalary.setMonthlySalary((int) (3000000 * 1.5));
 			}
 		}else if (grade == 2) {
-			monthlySalary = 5000000;
+			employeeSalary.setMonthlySalary(5000000);
 			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
+				employeeSalary.setMonthlySalary((int) (3000000 * 1.5));
 			}
 		}else if (grade == 3) {
-			monthlySalary = 7000000;
+			employeeSalary.setMonthlySalary(7000000);
 			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
+				employeeSalary.setMonthlySalary((int) (3000000 * 1.5));
 			}
 		}
 	}
 	
 	public void setAnnualDeductible(int deductible) {	
-		this.annualDeductible = deductible;
+		this.employeeSalary.setAnnualDeductible(deductible);
 	}
 	
 	public void setAdditionalIncome(int income) {	
-		this.otherMonthlyIncome = income;
+		this.employeeSalary.setOtherMonthlyIncome(income);
 	}
 	
-	public void setSpouse(String spouseName, String spouseIdNumber) {
-		this.spouseName = spouseName;
-		this.spouseIdNumber = idNumber;
+	public void setSpouse(Person spouse) {
+		this.spouse = spouse;
 	}
 	
-	public void addChild(String childName, String childIdNumber) {
-		childNames.add(childName);
-		childIdNumbers.add(childIdNumber);
+	public void addChild(Person child) {
+		children.add(child);
 	}
 	
 	public int getAnnualIncomeTax() {
@@ -94,12 +78,12 @@ public class Employee {
 		//Menghitung berapa lama pegawai bekerja dalam setahun ini, jika pegawai sudah bekerja dari tahun sebelumnya maka otomatis dianggap 12 bulan.
 		LocalDate date = LocalDate.now();
 		
-		if (date.getYear() == yearJoined) {
-			monthWorkingInYear = date.getMonthValue() - monthJoined;
+		if (date.getYear() == dateJoined.getYear()) {
+			monthWorkingInYear = date.getMonthValue() - dateJoined.getMonth() + 1;
 		}else {
 			monthWorkingInYear = 12;
 		}
 		
-		return TaxFunction.calculateTax(monthlySalary, otherMonthlyIncome, monthWorkingInYear, annualDeductible, spouseIdNumber.equals(""), childIdNumbers.size());
+		return TaxFunction.calculateTax(employeeSalary.getMonthlySalary(), employeeSalary.getOtherMonthlyIncome(), monthWorkingInYear, employeeSalary.getAnnualDeductible(), spouse.getIdNumber().equals(""), children.size());
 	}
 }
