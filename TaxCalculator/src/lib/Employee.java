@@ -22,9 +22,7 @@ public class Employee {
 	private boolean gender; //true = Laki-laki, false = Perempuan
 	
 	// Class salary
-	private int monthlySalary;
-	private int otherMonthlyIncome;
-	private int annualDeductible;
+	private Salary employeeSalary;
 	
 	private Person spouse;
 
@@ -50,29 +48,29 @@ public class Employee {
 	
 	public void setMonthlySalary(int grade) {	
 		if (grade == 1) {
-			monthlySalary = 3000000;
+			employeeSalary.setMonthlySalary(3000000);
 			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
+				employeeSalary.setMonthlySalary((int) (3000000 * 1.5));
 			}
 		}else if (grade == 2) {
-			monthlySalary = 5000000;
+			employeeSalary.setMonthlySalary(5000000);
 			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
+				employeeSalary.setMonthlySalary((int) (3000000 * 1.5));
 			}
 		}else if (grade == 3) {
-			monthlySalary = 7000000;
+			employeeSalary.setMonthlySalary(7000000);
 			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
+				employeeSalary.setMonthlySalary((int) (3000000 * 1.5));
 			}
 		}
 	}
 	
 	public void setAnnualDeductible(int deductible) {	
-		this.annualDeductible = deductible;
+		this.employeeSalary.setAnnualDeductible(deductible);
 	}
 	
 	public void setAdditionalIncome(int income) {	
-		this.otherMonthlyIncome = income;
+		this.employeeSalary.setOtherMonthlyIncome(income);
 	}
 	
 	public void setSpouse(Person spouse) {
@@ -94,6 +92,6 @@ public class Employee {
 			monthWorkingInYear = 12;
 		}
 		
-		return TaxFunction.calculateTax(monthlySalary, otherMonthlyIncome, monthWorkingInYear, annualDeductible, spouse.getIdNumber().equals(""), children.size());
+		return TaxFunction.calculateTax(employeeSalary.getMonthlySalary(), employeeSalary.getOtherMonthlyIncome(), monthWorkingInYear, employeeSalary.getAnnualDeductible(), spouse.getIdNumber().equals(""), children.size());
 	}
 }
