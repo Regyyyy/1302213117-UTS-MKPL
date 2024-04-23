@@ -1,12 +1,16 @@
 package lib;
 
 public class Person {
+    private enum Gender{
+        LakiLaki,
+        Perempuan
+    }
     private String name;
     private String firstName;
     private String lastName;
     private String idNumber;
 
-    public Person(String name, String idNumber) {
+    public Person(String name, String idNumber, Gender gender) {
         this.name = name;
         this.idNumber = idNumber;
     }
