@@ -11,8 +11,6 @@ public class Employee {
 	private String employeeId;
 	
 	private Person employeeInfo;
-
-	private String address;
 	
 	private Date dateJoined;
 
@@ -27,10 +25,9 @@ public class Employee {
 
 	private List<Person> children;
 	
-	public Employee(String employeeId, Person employeeInfo, String address, Date dateJoined, boolean isForeigner) {
+	public Employee(String employeeId, Person employeeInfo, Date dateJoined, boolean isForeigner) {
 		this.employeeId = employeeId;
 		this.employeeInfo = employeeInfo;
-		this.address = address;
 		this.dateJoined = dateJoined;
 		this.isForeigner = isForeigner;
 		
