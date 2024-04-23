@@ -9,9 +9,9 @@ import java.util.List;
 public class Employee {
 
 	private String employeeId;
-	private String firstName;
-	private String lastName;
-	private String idNumber;
+	
+	private Person employeeInfo;
+
 	private String address;
 	
 	private Date dateJoined;
@@ -28,11 +28,9 @@ public class Employee {
 
 	private List<Person> children;
 	
-	public Employee(String employeeId, String firstName, String lastName, String idNumber, String address, Date dateJoined, boolean isForeigner, boolean gender) {
+	public Employee(String employeeId, Person employeeInfo, String address, Date dateJoined, boolean isForeigner, boolean gender) {
 		this.employeeId = employeeId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.idNumber = idNumber;
+		this.employeeInfo = employeeInfo;
 		this.address = address;
 		this.dateJoined = dateJoined;
 		this.isForeigner = isForeigner;
