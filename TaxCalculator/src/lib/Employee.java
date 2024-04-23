@@ -65,6 +65,13 @@ public class Employee {
 		
 		//Menghitung berapa lama pegawai bekerja dalam setahun ini, jika pegawai sudah bekerja dari tahun sebelumnya maka otomatis dianggap 12 bulan.
 		LocalDate date = LocalDate.now();
+
+		int tax = 0;
+		int numberOfChildren = children.size();
+		int freeTaxSalary = 54000000;
+		int marriedSalaryRaise = 4500000;
+		int kidsSalaryRaise = 1500000;
+		double taxPercentage = 0.05;
 		
 		if (date.getYear() == dateJoined.getYear()) {
 			monthWorkingInYear = date.getMonthValue() - dateJoined.getMonth() + 1;
@@ -82,9 +89,6 @@ public class Employee {
 		 * Jika pegawai sudah memiliki anak maka penghasilan tidak kena pajaknya ditambah sebesar Rp 4.500.000 per anak sampai anak ketiga.
 		 * 
 		 */
-
-		int tax = 0;
-		int numberOfChildren = children.size();
 		
 		if (monthWorkingInYear > 12) {
 			System.err.println("More than 12 month working per year");
@@ -95,9 +99,9 @@ public class Employee {
 		}
 		
 		if (spouse.getIdNumber().equals("")) {
-			tax = (int) Math.round(0.05 * (((employeeSalary.getMonthlySalary() + employeeSalary.getOtherMonthlyIncome()) * monthWorkingInYear) - employeeSalary.getAnnualDeductible() - (54000000 + 4500000 + (numberOfChildren * 1500000))));
+			tax = (int) Math.round(taxPercentage * (((employeeSalary.getMonthlySalary() + employeeSalary.getOtherMonthlyIncome()) * monthWorkingInYear) - employeeSalary.getAnnualDeductible() - (freeTaxSalary + marriedSalaryRaise + (numberOfChildren * kidsSalaryRaise))));
 		}else {
-			tax = (int) Math.round(0.05 * (((employeeSalary.getMonthlySalary() + employeeSalary.getOtherMonthlyIncome()) * monthWorkingInYear) - employeeSalary.getAnnualDeductible() - 54000000));
+			tax = (int) Math.round(taxPercentage * (((employeeSalary.getMonthlySalary() + employeeSalary.getOtherMonthlyIncome()) * monthWorkingInYear) - employeeSalary.getAnnualDeductible() - freeTaxSalary));
 		}
 		
 		if (tax < 0) {
