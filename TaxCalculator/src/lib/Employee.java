@@ -63,7 +63,6 @@ public class Employee {
 	
 	public int getAnnualIncomeTax() {
 		
-		//Menghitung berapa lama pegawai bekerja dalam setahun ini, jika pegawai sudah bekerja dari tahun sebelumnya maka otomatis dianggap 12 bulan.
 		LocalDate date = LocalDate.now();
 
 		int tax = 0;
@@ -78,17 +77,6 @@ public class Employee {
 		}else {
 			monthWorkingInYear = 12;
 		}
-		
-		/**
-		 * Fungsi untuk menghitung jumlah pajak penghasilan pegawai yang harus dibayarkan setahun.
-		 * 
-		 * Pajak dihitung sebagai 5% dari penghasilan bersih tahunan (gaji dan pemasukan bulanan lainnya dikalikan jumlah bulan bekerja dikurangi pemotongan) dikurangi penghasilan tidak kena pajak.
-		 * 
-		 * Jika pegawai belum menikah dan belum punya anak maka penghasilan tidak kena pajaknya adalah Rp 54.000.000.
-		 * Jika pegawai sudah menikah maka penghasilan tidak kena pajaknya ditambah sebesar Rp 4.500.000.
-		 * Jika pegawai sudah memiliki anak maka penghasilan tidak kena pajaknya ditambah sebesar Rp 4.500.000 per anak sampai anak ketiga.
-		 * 
-		 */
 		
 		if (monthWorkingInYear > 12) {
 			System.err.println("More than 12 month working per year");
