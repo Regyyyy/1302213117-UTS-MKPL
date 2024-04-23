@@ -13,23 +13,24 @@ public class Employee {
 	private String idNumber;
 	private String address;
 	
+	// date
 	private int yearJoined;
 	private int monthJoined;
 	private int dayJoined;
+
 	private int monthWorkingInYear;
 	
 	private boolean isForeigner;
 	private boolean gender; //true = Laki-laki, false = Perempuan
 	
+	// Class salary
 	private int monthlySalary;
 	private int otherMonthlyIncome;
 	private int annualDeductible;
 	
-	private String spouseName;
-	private String spouseIdNumber;
+	private Person spouse;
 
-	private List<String> childNames;
-	private List<String> childIdNumbers;
+	private List<Person> children;
 	
 	public Employee(String employeeId, String firstName, String lastName, String idNumber, String address, int yearJoined, int monthJoined, int dayJoined, boolean isForeigner, boolean gender) {
 		this.employeeId = employeeId;
@@ -43,8 +44,7 @@ public class Employee {
 		this.isForeigner = isForeigner;
 		this.gender = gender;
 		
-		childNames = new LinkedList<String>();
-		childIdNumbers = new LinkedList<String>();
+		children = new LinkedList<Person>();
 	}
 	
 	/**
@@ -79,14 +79,12 @@ public class Employee {
 		this.otherMonthlyIncome = income;
 	}
 	
-	public void setSpouse(String spouseName, String spouseIdNumber) {
-		this.spouseName = spouseName;
-		this.spouseIdNumber = idNumber;
+	public void setSpouse(Person spouse) {
+		this.spouse = spouse;
 	}
 	
-	public void addChild(String childName, String childIdNumber) {
-		childNames.add(childName);
-		childIdNumbers.add(childIdNumber);
+	public void addChild(Person child) {
+		children.add(child);
 	}
 	
 	public int getAnnualIncomeTax() {
@@ -100,6 +98,6 @@ public class Employee {
 			monthWorkingInYear = 12;
 		}
 		
-		return TaxFunction.calculateTax(monthlySalary, otherMonthlyIncome, monthWorkingInYear, annualDeductible, spouseIdNumber.equals(""), childIdNumbers.size());
+		return TaxFunction.calculateTax(monthlySalary, otherMonthlyIncome, monthWorkingInYear, annualDeductible, spouse.getIdNumber().equals(""), children.size());
 	}
 }
