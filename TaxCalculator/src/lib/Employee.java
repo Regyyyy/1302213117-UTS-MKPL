@@ -38,19 +38,19 @@ public class Employee {
 	
 	public void setMonthlySalary(int grade) {	
 		if (grade == 1) {
-			employeeSalary.setMonthlySalary(3000000);
+			employeeSalary.setMonthlySalary(grade1Salary);
 			if (isForeigner) {
-				employeeSalary.setMonthlySalary((int) (3000000 * 1.5));
+				employeeSalary.setMonthlySalary((int) (grade1Salary * 1.5));
 			}
 		}else if (grade == 2) {
-			employeeSalary.setMonthlySalary(5000000);
+			employeeSalary.setMonthlySalary(grade2Salary);
 			if (isForeigner) {
-				employeeSalary.setMonthlySalary((int) (3000000 * 1.5));
+				employeeSalary.setMonthlySalary((int) (grade2Salary * 1.5));
 			}
 		}else if (grade == 3) {
-			employeeSalary.setMonthlySalary(7000000);
+			employeeSalary.setMonthlySalary(grade3Salary);
 			if (isForeigner) {
-				employeeSalary.setMonthlySalary((int) (3000000 * 1.5));
+				employeeSalary.setMonthlySalary((int) (grade3Salary * 1.5));
 			}
 		}
 	}
