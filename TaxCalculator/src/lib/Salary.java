@@ -1,7 +1,5 @@
 package lib;
 
-import java.lang.reflect.Constructor;
-
 public class Salary {
     private int monthlySalary;
 	private int otherMonthlyIncome;
